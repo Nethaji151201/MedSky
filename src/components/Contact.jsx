@@ -1,53 +1,55 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useMemo } from "react";
 import { motion } from "framer-motion";
 import { TextField, Button, ThemeProvider, createTheme } from "@mui/material";
 import { COMPANY_INFO } from "../constants/content";
 import { Mail, Phone, MapPin } from "lucide-react";
-import emailjs from '@emailjs/browser';
 import SnackbarAlert from "./SnackbarAlert";
+import { useTheme } from "../context/ThemeContext";
 
-const muiTheme = createTheme({
-  palette: {
-    mode: "dark",
-    primary: {
-      main: "#14b8a6", // Teal 500
+export default function Contact() {
+  const formRef = useRef();
+  const { theme } = useTheme();
+
+  const muiTheme = useMemo(() => createTheme({
+    palette: {
+      mode: theme === 'dark' ? 'dark' : 'light',
+      primary: {
+        main: "#14b8a6", // Teal 500
+      },
+      text: {
+        primary: theme === 'dark' ? '#ffffff' : '#111827',
+      },
     },
-    background: {
-      paper: "transparent",
+    typography: {
+      fontFamily: '"Inter", "Poppins", sans-serif',
     },
-  },
-  typography: {
-    fontFamily: '"Inter", "Poppins", sans-serif',
-  },
-  components: {
-    MuiTextField: {
-      styleOverrides: {
-        root: {
-          "& .MuiOutlinedInput-root": {
-            borderRadius: "12px",
-            backgroundColor: "rgba(255, 255, 255, 0.03)",
-            backdropFilter: "blur(10px)",
-            transition: "all 0.3s ease",
-            "& fieldset": {
-              borderColor: "rgba(255, 255, 255, 0.1)",
-            },
-            "&:hover fieldset": {
-              borderColor: "rgba(20, 184, 166, 0.5)",
-            },
-            "&.Mui-focused fieldset": {
-              borderColor: "#14b8a6",
-              borderWidth: "2px",
-              boxShadow: "0 0 10px rgba(20, 184, 166, 0.3)",
+    components: {
+      MuiTextField: {
+        styleOverrides: {
+          root: {
+            "& .MuiOutlinedInput-root": {
+              borderRadius: "12px",
+              backgroundColor: theme === 'dark' ? "rgba(255, 255, 255, 0.03)" : "rgba(0, 0, 0, 0.02)",
+              backdropFilter: "blur(10px)",
+              transition: "all 0.3s ease",
+              "& fieldset": {
+                borderColor: theme === 'dark' ? "rgba(255, 255, 255, 0.1)" : "rgba(0, 0, 0, 0.15)",
+              },
+              "&:hover fieldset": {
+                borderColor: "rgba(20, 184, 166, 0.5)",
+              },
+              "&.Mui-focused fieldset": {
+                borderColor: "#14b8a6",
+                borderWidth: "2px",
+                boxShadow: theme === 'dark' ? "0 0 10px rgba(20, 184, 166, 0.3)" : "0 0 10px rgba(20, 184, 166, 0.1)",
+              },
             },
           },
         },
       },
     },
-  },
-});
+  }), [theme]);
 
-export default function Contact() {
-  const formRef = useRef();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -77,44 +79,21 @@ export default function Contact() {
 
     setIsSubmitting(true);
 
-    // TODO: Replace these with your actual EmailJS credentials
-    const serviceId = "YOUR_SERVICE_ID";
-    const templateId = "YOUR_TEMPLATE_ID";
-    const publicKey = "YOUR_PUBLIC_KEY";
+    // Get the first phone number and strip non-numeric characters for WhatsApp
+    const firstPhone = COMPANY_INFO.phone.split(' / ')[0].replace(/[^0-9]/g, '');
 
-    const templateParams = {
-      from_name: formData.name,
-      from_email: formData.email,
-      phone_number: formData.phone,
-      message: formData.message,
-      to_name: "Medsky Admin"
-    };
+    const text = `*New Contact Inquiry*\n\n*Name:* ${formData.name}\n*Email:* ${formData.email}\n*Phone:* ${formData.phone}\n*Message:* ${formData.message}`;
+    const whatsappUrl = `https://wa.me/${firstPhone}?text=${encodeURIComponent(text)}`;
 
-    // If credentials are not set, simulate success for demo purposes
-    if (serviceId === "YOUR_SERVICE_ID") {
-      setTimeout(() => {
-        setIsSubmitting(false);
-        setSnackbar({ open: true, message: "Message sent! (Simulated - EmailJS not configured yet)", severity: "success" });
-        setFormData({ name: "", email: "", phone: "", message: "" });
-      }, 1500);
-      return;
-    }
+    window.open(whatsappUrl, '_blank');
 
-    emailjs.send(serviceId, templateId, templateParams, publicKey)
-      .then((response) => {
-        setIsSubmitting(false);
-        setSnackbar({ open: true, message: "Your message has been sent successfully!", severity: "success" });
-        setFormData({ name: "", email: "", phone: "", message: "" });
-      })
-      .catch((error) => {
-        setIsSubmitting(false);
-        setSnackbar({ open: true, message: "Failed to send message. Please try again later.", severity: "error" });
-        console.error("EmailJS Error:", error);
-      });
+    setIsSubmitting(false);
+    setSnackbar({ open: true, message: "Redirecting to WhatsApp...", severity: "success" });
+    setFormData({ name: "", email: "", phone: "", message: "" });
   };
 
   return (
-    <section id="contact" className="py-24 bg-[#050b1a] relative">
+    <section id="contact" className="py-24 bg-gray-50 dark:bg-[#050b1a] relative transition-colors">
       <div className="container mx-auto px-6 relative z-10">
         <motion.div
           className="text-center max-w-2xl mx-auto mb-16"
@@ -122,15 +101,15 @@ export default function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <span className="text-teal-400 font-semibold tracking-widest uppercase mb-4 block text-sm">
+          <span className="text-teal-600 dark:text-teal-400 font-semibold tracking-widest uppercase mb-4 block text-sm transition-colors">
             Get In Touch
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6 transition-colors">
             Ready To Modernize?
           </h2>
         </motion.div>
 
-        <div className="flex flex-col gap-12 bg-white/5 p-8 md:p-12 rounded-[32px] border border-white/10 backdrop-blur-xl max-w-6xl mx-auto">
+        <div className="flex flex-col gap-12 bg-white dark:bg-white/5 p-8 md:p-12 rounded-[32px] border border-gray-200 dark:border-white/10 shadow-sm dark:shadow-none backdrop-blur-xl max-w-6xl mx-auto transition-colors">
           <div className="flex flex-col lg:flex-row gap-12">
             {/* Left - Map */}
             <motion.div
@@ -157,50 +136,50 @@ export default function Contact() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <h3 className="text-3xl font-bold text-white mb-6">
+              <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-6 transition-colors">
                 Contact Information
               </h3>
-              <p className="text-gray-400 mb-8 text-lg font-light leading-relaxed">
+              <p className="text-gray-600 dark:text-gray-400 mb-8 text-lg font-light leading-relaxed transition-colors">
                 Reach out to our dedicated team. We respond rapidly because your
                 time is valuable.
               </p>
 
               <div className="space-y-6">
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-full bg-teal-500/20 flex items-center justify-center flex-shrink-0 text-teal-400">
+                  <div className="w-12 h-12 rounded-full bg-teal-500/10 dark:bg-teal-500/20 flex items-center justify-center flex-shrink-0 text-teal-600 dark:text-teal-400 transition-colors">
                     <MapPin size={24} />
                   </div>
                   <div>
-                    <h4 className="text-white font-medium mb-1">
+                    <h4 className="text-gray-900 dark:text-white font-medium mb-1 transition-colors">
                       Office Location
                     </h4>
-                    <p className="text-gray-400">{COMPANY_INFO.address}</p>
+                    <p className="text-gray-600 dark:text-gray-400 transition-colors">{COMPANY_INFO.address}</p>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-full bg-teal-500/20 flex items-center justify-center flex-shrink-0 text-teal-400">
+                  <div className="w-12 h-12 rounded-full bg-teal-500/10 dark:bg-teal-500/20 flex items-center justify-center flex-shrink-0 text-teal-600 dark:text-teal-400 transition-colors">
                     <Phone size={24} />
                   </div>
                   <div>
-                    <h4 className="text-white font-medium mb-1">
+                    <h4 className="text-gray-900 dark:text-white font-medium mb-1 transition-colors">
                       Phone Number
                     </h4>
-                    <p className="text-gray-400 whitespace-pre-line">
+                    <p className="text-gray-600 dark:text-gray-400 whitespace-pre-line transition-colors">
                       {COMPANY_INFO.phone.replace(" / ", "\n")}
                     </p>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-full bg-teal-500/20 flex items-center justify-center flex-shrink-0 text-teal-400">
+                  <div className="w-12 h-12 rounded-full bg-teal-500/10 dark:bg-teal-500/20 flex items-center justify-center flex-shrink-0 text-teal-600 dark:text-teal-400 transition-colors">
                     <Mail size={24} />
                   </div>
                   <div>
-                    <h4 className="text-white font-medium mb-1">
+                    <h4 className="text-gray-900 dark:text-white font-medium mb-1 transition-colors">
                       Email Address
                     </h4>
-                    <p className="text-gray-400">{COMPANY_INFO.email}</p>
+                    <p className="text-gray-600 dark:text-gray-400 transition-colors">{COMPANY_INFO.email}</p>
                   </div>
                 </div>
               </div>
@@ -209,12 +188,12 @@ export default function Contact() {
 
           {/* Bottom - Form */}
           <motion.div
-            className="w-full border-t border-white/10 pt-10 mt-4"
+            className="w-full border-t border-gray-200 dark:border-white/10 pt-10 mt-4 transition-colors"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-2xl font-bold text-white mb-8 text-center">
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-8 text-center transition-colors">
               Send Us a Message
             </h3>
             <ThemeProvider theme={muiTheme}>

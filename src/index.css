@@ -1,14 +1,21 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary-500: #14b8a6;
-  --color-primary-600: #0f766e;
+  --color-primary-500: #1eb0aa;
+  --color-primary-600: #178f8a;
   --color-secondary-900: #0f172a;
   --color-accent-glow: #22d3ee;
 }
 
+@custom-variant dark (&:is(.dark *));
+
 @layer base {
   :root {
+    --background: #ffffff;
+    --foreground: #1a1a1a;
+  }
+  
+  .dark {
     --background: #020617; /* Very dark slate */
     --foreground: #f8fafc;
   }
@@ -21,15 +28,16 @@
     background-color: var(--background);
     color: var(--foreground);
     overflow-x: hidden;
+    transition: background-color 0.4s ease, color 0.4s ease;
   }
 }
 
 @layer utilities {
   .glass {
-    @apply bg-white/5 backdrop-blur-md border border-white/10;
+    @apply bg-white/80 dark:bg-white/5 backdrop-blur-md border border-gray-200 dark:border-white/10 shadow-sm dark:shadow-none;
   }
   .glass-card {
-    @apply bg-[#0f172a]/80 backdrop-blur-lg border border-teal-500/20 shadow-xl;
+    @apply bg-white dark:bg-[#0f172a]/80 backdrop-blur-lg border border-gray-100 dark:border-teal-500/20 shadow-xl;
   }
   .glow-text {
     text-shadow: 0 0 10px rgba(20, 184, 166, 0.5), 0 0 20px rgba(20, 184, 166, 0.3);

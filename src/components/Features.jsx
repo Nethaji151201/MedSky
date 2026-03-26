@@ -24,7 +24,7 @@ export default function Features() {
   };
 
   return (
-    <section id="features" className="py-24 relative bg-[#050b1a] overflow-hidden">
+    <section id="features" className="py-24 relative bg-white dark:bg-[#050b1a] overflow-hidden transition-colors">
       {/* Background glow effects */}
       <div className="absolute top-0 right-1/4 w-[400px] h-[400px] bg-cyan-500/10 rounded-full blur-[120px] pointer-events-none"></div>
       <div className="absolute bottom-40 left-10 w-[300px] h-[300px] bg-teal-600/10 rounded-full blur-[100px] pointer-events-none"></div>
@@ -39,10 +39,10 @@ export default function Features() {
           <span className="text-teal-400 font-semibold tracking-widest uppercase mb-4 block text-sm">
             Core Modules
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6 transition-colors">
             Everything Your Clinic Needs
           </h2>
-          <p className="text-gray-400 text-lg">
+          <p className="text-gray-600 dark:text-gray-400 text-lg transition-colors">
             Experience an all-in-one ecosystem designed for rapid workflows and patient-first care.
           </p>
         </motion.div>
@@ -70,16 +70,16 @@ export default function Features() {
                   <Icon size={28} className="text-teal-400" />
                 </div>
                 
-                <h3 className="text-xl font-bold text-white mb-3 group-hover:text-teal-300 transition-colors">
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-teal-600 dark:group-hover:text-teal-300 transition-colors">
                   {feature.title}
                 </h3>
                 
-                <p className="text-gray-400 text-sm leading-relaxed">
+                <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed transition-colors">
                   {feature.description}
                 </p>
                 
                 <div className="absolute bottom-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <span className="text-teal-400 text-sm font-medium flex items-center gap-1 group/btn">
+                  <span className="text-teal-600 dark:text-teal-400 text-sm font-medium flex items-center gap-1 group/btn transition-colors">
                     Details 
                     <span className="group-hover/btn:translate-x-1 transition-transform">→</span>
                   </span>

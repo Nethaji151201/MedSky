@@ -17,7 +17,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-moving-gradient"
+      className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-white dark:bg-moving-gradient transition-colors"
     >
       {/* Background Image overlay */}
       <div
@@ -28,8 +28,8 @@ export default function Hero() {
         }}
       ></div>
 
-      {/* Dark Gradient Overlay */}
-      <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#020617]/90 via-[#020617]/80 to-[#020617]"></div>
+      {/* Dark/Light Gradient Overlay */}
+      <div className="absolute inset-0 z-0 bg-gradient-to-b from-white/90 via-white/80 to-white dark:from-[#020617]/90 dark:via-[#020617]/80 dark:to-[#020617] transition-colors"></div>
 
       {/* Floating Elements (Parallax effect simulated with Framer Motion) */}
       <div className="absolute inset-0 z-10 pointer-events-none overflow-hidden">
@@ -56,7 +56,7 @@ export default function Hero() {
         </motion.div>
 
         <motion.h1
-          className="text-5xl md:text-7xl lg:text-8xl font-black heading-primary mb-6 text-white leading-tight"
+          className="text-5xl md:text-7xl lg:text-8xl font-black heading-primary mb-6 text-gray-900 dark:text-white leading-tight transition-colors"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
@@ -83,7 +83,7 @@ export default function Hero() {
         </motion.h1>
 
         <motion.p
-          className="text-xl md:text-2xl text-gray-300 max-w-2xl mx-auto mb-12 font-light tracking-wide"
+          className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-12 font-light tracking-wide transition-colors"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.4 }}
@@ -99,14 +99,14 @@ export default function Hero() {
         >
           <a
             href="#contact"
-            className="glow-button bg-teal-500 hover:bg-teal-400 text-[#020617] px-8 py-4 rounded-full font-bold text-lg transition-all transform hover:scale-105 animate-pulse-glow"
+            className="glow-button bg-teal-500 hover:bg-teal-600 text-white dark:text-[#020617] px-8 py-4 rounded-full font-bold text-lg transition-all transform hover:scale-105 animate-pulse-glow"
           >
             Make an Appointment
           </a>
           <a
             href="https://medsky.in/downloads/medsky-brochure-2022.pdf"
             target="_blank"
-            className="glass hover:bg-white/10 text-white px-8 py-4 rounded-full font-bold text-lg transition-all flex items-center gap-3 group border border-white/20 hover:border-teal-400/50"
+            className="glass hover:bg-gray-100 dark:hover:bg-white/10 text-gray-900 dark:text-white px-8 py-4 rounded-full font-bold text-lg transition-all flex items-center gap-3 group border border-teal-500/20 dark:border-white/20 hover:border-teal-500"
           >
             <Download
               size={20}
@@ -118,16 +118,16 @@ export default function Hero() {
       </div>
 
       {/* Scroll indicator */}
-      <motion.div
+      {/* <motion.div
         className="absolute bottom-0 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-20"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1, duration: 1 }}
       >
-        <span className="text-gray-400 text-xs uppercase tracking-widest font-semibold font-mono">
+        <span className="text-gray-500 dark:text-gray-400 text-xs uppercase tracking-widest font-semibold font-mono transition-colors">
           Scroll
         </span>
-        <div className="w-[1px] h-12 bg-gray-600 overflow-hidden">
+        <div className="w-[1px] h-12 bg-gray-300 dark:bg-gray-600 overflow-hidden transition-colors">
           <motion.div
             className="w-full bg-teal-400"
             initial={{ height: 0, y: 0 }}
@@ -135,7 +135,7 @@ export default function Hero() {
             transition={{ repeat: Infinity, duration: 1.5, ease: "linear" }}
           />
         </div>
-      </motion.div>
+      </motion.div> */}
     </section>
   );
 }

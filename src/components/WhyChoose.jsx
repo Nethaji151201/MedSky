@@ -34,7 +34,7 @@ function AnimatedCounter({ value, suffix, duration = 2 }) {
 
 export default function WhyChoose() {
   return (
-    <section id="why-us" className="py-24 relative bg-[#020617] border-y border-white/5">
+    <section id="why-us" className="py-24 relative bg-gray-50 dark:bg-[#020617] border-y border-gray-200 dark:border-white/5 transition-colors">
       <div className="container mx-auto px-6">
         
         {/* Stats Section with Glassmorphism floating effect */}
@@ -46,12 +46,12 @@ export default function WhyChoose() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1, type: "spring" }}
-              className="glass p-6 md:p-8 rounded-2xl border-teal-500/20 shadow-2xl bg-[#0f172a]/90 backdrop-blur-xl text-center hover:-translate-y-2 transition-transform duration-300"
+              className="glass p-6 md:p-8 rounded-2xl shadow-xl hover:-translate-y-2 transition-transform duration-300"
             >
-              <h3 className="text-4xl md:text-5xl font-black text-white mb-2 text-gradient drop-shadow-lg">
+              <h3 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-2 text-gradient drop-shadow-lg transition-colors">
                 <AnimatedCounter value={stat.value} suffix={stat.suffix} />
               </h3>
-              <p className="text-teal-400 text-sm font-semibold uppercase tracking-wider">{stat.label}</p>
+              <p className="text-teal-600 dark:text-teal-400 text-sm font-semibold uppercase tracking-wider transition-colors">{stat.label}</p>
             </motion.div>
           ))}
         </div>
@@ -64,23 +64,23 @@ export default function WhyChoose() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
           >
-            <span className="text-teal-400 font-semibold tracking-widest uppercase mb-4 block text-sm">
+            <span className="text-teal-600 dark:text-teal-400 font-semibold tracking-widest uppercase mb-4 block text-sm transition-colors">
               Why MedSky
             </span>
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6 leading-tight transition-colors">
               A Premium Experience For Premium Clinics
             </h2>
-            <p className="text-gray-300 text-lg mb-8 leading-relaxed font-light">
+            <p className="text-gray-600 dark:text-gray-300 text-lg mb-8 leading-relaxed font-light transition-colors">
               We aren't just another software. We provide a competitive edge. Speed up your workflow, reduce overhead, and give your patients a modern experience they will love.
             </p>
             
             <motion.button 
-              className="glow-button group relative px-8 py-4 bg-transparent border border-teal-500 text-white font-bold rounded-full overflow-hidden"
+              className="glow-button group relative px-8 py-4 bg-transparent border border-teal-500 text-teal-600 dark:text-white font-bold rounded-full overflow-hidden transition-colors"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
               <span className="absolute inset-0 bg-teal-500 w-0 group-hover:w-full transition-all duration-300 ease-out z-0"></span>
-              <span className="relative z-10 group-hover:text-[#020617] transition-colors">See the Difference</span>
+              <span className="relative z-10 group-hover:text-white dark:group-hover:text-[#020617] transition-colors">See the Difference</span>
             </motion.button>
           </motion.div>
 
@@ -93,14 +93,14 @@ export default function WhyChoose() {
             {WHY_CHOOSE_US.map((item, index) => (
               <motion.div 
                 key={index}
-                className="bg-white/5 border border-white/10 p-6 rounded-2xl hover:bg-teal-500/10 hover:border-teal-500/30 transition-all cursor-default"
+                className="bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 p-6 rounded-2xl shadow-sm dark:shadow-none hover:bg-teal-50 dark:hover:bg-teal-500/10 hover:border-teal-500/30 transition-all cursor-default"
                 whileHover={{ y: -5, scale: 1.02 }}
               >
-                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-teal-400 to-cyan-500 mb-4 flex items-center justify-center text-[#020617] font-black glow-box">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-teal-400 to-cyan-500 mb-4 flex items-center justify-center text-white dark:text-[#020617] font-black glow-box transition-colors">
                   {index + 1}
                 </div>
-                <h4 className="text-xl font-bold text-white mb-2">{item.title}</h4>
-                <p className="text-gray-400 text-sm">{item.desc}</p>
+                <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-2 transition-colors">{item.title}</h4>
+                <p className="text-gray-600 dark:text-gray-400 text-sm transition-colors">{item.desc}</p>
               </motion.div>
             ))}
           </motion.div>

@@ -1,7 +1,9 @@
 import React from "react";
 import { COMPANY_INFO } from "../constants/content";
+import { useTheme } from "../context/ThemeContext";
 
 export default function Footer() {
+  const { theme } = useTheme();
   const socialIcons = [
     {
       name: "Facebook",
@@ -59,7 +61,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-[#020617] border-t border-white/10 pt-16 pb-8 relative overflow-hidden">
+    <footer className="bg-white dark:bg-[#020617] border-t border-gray-200 dark:border-white/10 pt-16 pb-8 relative overflow-hidden transition-colors">
       {/* Decorative gradient */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-px bg-gradient-to-r from-transparent via-teal-500 to-transparent opacity-50"></div>
 
@@ -71,29 +73,29 @@ export default function Footer() {
               className="flex items-center gap-3 mb-6 group inline-flex"
             >
               <img
-                src="/medsky_logo4.png"
+                src={theme === 'dark' ? "/medsky_logo4.png" : "/medsky_logo5.png"}
                 alt="MedSky Logo"
                 className="h-12 md:h-14 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
               />
-              <span className="text-2xl md:text-3xl font-bold tracking-wide text-white">
-                MedSky<span className="text-teal-400">.</span>
+              <span className="text-2xl md:text-3xl font-bold tracking-wide text-gray-900 dark:text-white transition-colors">
+                MedSky<span className="text-teal-500 dark:text-teal-400 transition-colors">.</span>
               </span>
             </a>
-            <p className="text-gray-400 text-lg pr-4 lg:pr-20 mb-6 font-light">
+            <p className="text-gray-600 dark:text-gray-400 text-lg pr-4 lg:pr-20 mb-6 font-light transition-colors">
               Empowering healthcare facilities with modern, high-speed, and
               secure management solutions for the digital age.
             </p>
           </div>
 
           <div>
-            <h4 className="text-white font-bold text-lg mb-6">Quick Links</h4>
+            <h4 className="text-gray-900 dark:text-white font-bold text-lg mb-6 transition-colors">Quick Links</h4>
             <ul className="space-y-4">
               {["Home", "About Us", "Features", "Pricing", "Contact"].map(
                 (link) => (
                   <li key={link}>
                     <a
                       href={`#${link.toLowerCase().replace(" ", "-")}`}
-                      className="text-gray-400 hover:text-teal-400 transition-colors"
+                      className="text-gray-600 dark:text-gray-400 hover:text-teal-600 dark:hover:text-teal-400 transition-colors"
                     >
                       {link}
                     </a>
@@ -104,12 +106,12 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="text-white font-bold text-lg mb-6">Legal</h4>
+            <h4 className="text-gray-900 dark:text-white font-bold text-lg mb-6 transition-colors">Legal</h4>
             <ul className="space-y-4">
               <li>
                 <a
                   href="#"
-                  className="text-gray-400 hover:text-teal-400 transition-colors"
+                  className="text-gray-600 dark:text-gray-400 hover:text-teal-600 dark:hover:text-teal-400 transition-colors"
                 >
                   Privacy Policy
                 </a>
@@ -117,7 +119,7 @@ export default function Footer() {
               <li>
                 <a
                   href="#"
-                  className="text-gray-400 hover:text-teal-400 transition-colors"
+                  className="text-gray-600 dark:text-gray-400 hover:text-teal-600 dark:hover:text-teal-400 transition-colors"
                 >
                   Terms of Service
                 </a>
@@ -125,7 +127,7 @@ export default function Footer() {
               <li>
                 <a
                   href="#"
-                  className="text-gray-400 hover:text-teal-400 transition-colors"
+                  className="text-gray-600 dark:text-gray-400 hover:text-teal-600 dark:hover:text-teal-400 transition-colors"
                 >
                   Cookie Policy
                 </a>
@@ -133,7 +135,7 @@ export default function Footer() {
               <li>
                 <a
                   href="#"
-                  className="text-gray-400 hover:text-teal-400 transition-colors"
+                  className="text-gray-600 dark:text-gray-400 hover:text-teal-600 dark:hover:text-teal-400 transition-colors"
                 >
                   Support Center
                 </a>
@@ -142,8 +144,8 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-gray-500 text-sm">
+        <div className="border-t border-gray-200 dark:border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 transition-colors">
+          <p className="text-gray-500 text-sm transition-colors">
             &copy; {new Date().getFullYear()} {COMPANY_INFO.name}. All rights
             reserved.
           </p>
@@ -156,7 +158,7 @@ export default function Footer() {
                   href={social.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:bg-teal-500/20 hover:text-teal-400 hover:border-teal-500/30 transition-all"
+                  className="w-10 h-10 rounded-full bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 flex items-center justify-center text-gray-500 dark:text-gray-400 hover:bg-teal-50 dark:hover:bg-teal-500/20 hover:text-teal-600 dark:hover:text-teal-400 hover:border-teal-500/30 transition-all"
                   aria-label={social.name}
                 >
                   <Icon size={18} />

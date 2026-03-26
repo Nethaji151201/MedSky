@@ -1,0 +1,12 @@
+export const COLORS = {
+  PRIMARY: "#1eb0aa",
+  PRIMARY_HOVER: "#178f8a",
+  BACKGROUND_LIGHT: "#ffffff",
+  BACKGROUND_DARK: "#020617",
+  TEXT_LIGHT: "#1a1a1a",
+  TEXT_DARK: "#f8fafc",
+  TEXT_SECONDARY_LIGHT: "#6b7280",
+  TEXT_SECONDARY_DARK: "#9ca3af",
+  BORDER_LIGHT: "#e5e7eb",
+  BORDER_DARK: "rgba(255, 255, 255, 0.1)"
+};

@@ -23,7 +23,7 @@ export default function App() {
 
   if (loading) {
     return (
-      <div className="bg-[#020617] min-h-screen flex items-center justify-center relative overflow-hidden">
+      <div className="bg-white dark:bg-[#020617] min-h-screen flex items-center justify-center relative overflow-hidden transition-colors">
         {/* Background glow for loader */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-teal-500/20 rounded-full blur-[100px] pointer-events-none"></div>
         
@@ -36,7 +36,7 @@ export default function App() {
             <div className="absolute inset-0 rounded-full border-b-4 border-r-4 border-cyan-500 opacity-50"></div>
           </motion.div>
           <motion.h1 
-            className="text-2xl font-bold text-white tracking-widest uppercase flex items-center gap-2"
+            className="text-2xl font-bold text-gray-900 dark:text-white tracking-widest uppercase flex items-center gap-2"
             animate={{ opacity: [0.5, 1, 0.5] }}
             transition={{ repeat: Infinity, duration: 1.5 }}
           >
@@ -50,7 +50,7 @@ export default function App() {
   return (
     <AnimatePresence>
       <motion.div 
-        className="font-sans text-gray-200"
+        className="font-sans text-gray-900 dark:text-gray-200 transition-colors"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}

@@ -5,7 +5,7 @@ import { CheckCircle2 } from 'lucide-react';
 
 export default function About() {
   return (
-    <section id="about" className="py-24 relative overflow-hidden bg-[#020617]">
+    <section id="about" className="py-24 relative overflow-hidden bg-gray-50 dark:bg-[#020617] transition-colors">
       {/* Decorative gradient blob */}
       <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[500px] h-[500px] bg-teal-500/10 rounded-full blur-[100px] pointer-events-none"></div>
 
@@ -38,8 +38,8 @@ export default function About() {
                   <span className="text-teal-400 font-bold text-2xl">#1</span>
                 </div>
                 <div>
-                  <p className="text-white font-bold leading-tight">Top Rated</p>
-                  <p className="text-gray-400 text-sm">Healthcare SaaS</p>
+                  <p className="text-gray-900 dark:text-white font-bold leading-tight transition-colors">Top Rated</p>
+                  <p className="text-gray-600 dark:text-gray-400 text-sm transition-colors">Healthcare SaaS</p>
                 </div>
               </motion.div>
             </div>
@@ -58,11 +58,11 @@ export default function About() {
               {ABOUT_CONTENT.subtitle}
             </h4>
             
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6 leading-tight transition-colors">
               {ABOUT_CONTENT.title}
             </h2>
             
-            <p className="text-gray-300 text-lg mb-8 leading-relaxed font-light">
+            <p className="text-gray-600 dark:text-gray-300 text-lg mb-8 leading-relaxed font-light transition-colors">
               {ABOUT_CONTENT.description}
             </p>
 
@@ -76,17 +76,17 @@ export default function About() {
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 + 0.5 }}
                 >
-                  <div className="w-6 h-6 rounded-full bg-teal-500/20 flex items-center justify-center flex-shrink-0">
-                    <CheckCircle2 size={16} className="text-teal-400" />
+                  <div className="w-6 h-6 rounded-full bg-teal-500/10 dark:bg-teal-500/20 flex items-center justify-center flex-shrink-0 transition-colors">
+                    <CheckCircle2 size={16} className="text-teal-500 dark:text-teal-400" />
                   </div>
-                  <span className="text-gray-200 font-medium">{benefit}</span>
+                  <span className="text-gray-700 dark:text-gray-200 font-medium transition-colors">{benefit}</span>
                 </motion.div>
               ))}
             </div>
 
             <motion.a
               href="#contact"
-              className="glow-button self-start glass border-teal-500/30 hover:bg-teal-500/10 text-white px-8 py-3.5 rounded-full font-semibold transition-all inline-flex items-center gap-2 group"
+              className="glow-button self-start glass border-teal-500/30 hover:bg-teal-50 dark:hover:bg-teal-500/10 text-gray-900 dark:text-white px-8 py-3.5 rounded-full font-semibold transition-all inline-flex items-center gap-2 group"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
