@@ -40,7 +40,7 @@ export default function Hero() {
       </div>
 
       <div className="container mx-auto px-6 relative z-20 flex flex-col items-center text-center">
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
@@ -53,7 +53,7 @@ export default function Hero() {
             </span>
             {COMPANY_INFO.name} v2.0 Live
           </span>
-        </motion.div>
+        </motion.div> */}
 
         <motion.h1
           className="text-5xl md:text-7xl lg:text-8xl font-black heading-primary mb-6 text-gray-900 dark:text-white leading-tight transition-colors"
@@ -62,7 +62,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.2 }}
         >
           {COMPANY_INFO.heroTitle.replace("!!", "")}{" "}
-          <br className="hidden md:block" />
+          {/* <br className="hidden md:block" />
           <span className="text-gradient drop-shadow-lg">
             YOUR{" "}
             <span className="inline-block min-w-[280px] text-left">
@@ -77,9 +77,8 @@ export default function Hero() {
                 {words[currentWordIndex]}
               </motion.span>
               <span className="invisible text-teal-400">{words[0]}</span>{" "}
-              {/* Layout placeholder */}
             </span>
-          </span>
+          </span> */}
         </motion.h1>
 
         <motion.p
@@ -91,7 +90,7 @@ export default function Hero() {
           {COMPANY_INFO.shortDesc}
         </motion.p>
 
-        <motion.div
+        {/* <motion.div
           className="flex flex-col sm:flex-row gap-6 items-center"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -114,7 +113,7 @@ export default function Hero() {
             />
             Download E-Brochure
           </a>
-        </motion.div>
+        </motion.div> */}
       </div>
 
       {/* Scroll indicator */}

@@ -1,6 +1,6 @@
-import React, { useEffect, useState, useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
-import { STATS, WHY_CHOOSE_US } from '../constants/content';
+import React, { useEffect, useState, useRef } from "react";
+import { motion, useInView } from "framer-motion";
+import { STATS, WHY_CHOOSE_US } from "../constants/content";
 
 function AnimatedCounter({ value, suffix, duration = 2 }) {
   const [count, setCount] = useState(0);
@@ -11,14 +11,16 @@ function AnimatedCounter({ value, suffix, duration = 2 }) {
     if (isInView) {
       let start = 0;
       const end = parseFloat(value);
-      const isDecimal = value.toString().includes('.');
+      const isDecimal = value.toString().includes(".");
       const timer = setInterval(() => {
         start += end / (duration * 20); // 20 frames per second logic
         if (start >= end) {
           clearInterval(timer);
           setCount(end);
         } else {
-          setCount(isDecimal ? parseFloat(start.toFixed(1)) : Math.floor(start));
+          setCount(
+            isDecimal ? parseFloat(start.toFixed(1)) : Math.floor(start),
+          );
         }
       }, 50);
       return () => clearInterval(timer);
@@ -27,18 +29,21 @@ function AnimatedCounter({ value, suffix, duration = 2 }) {
 
   return (
     <span ref={ref}>
-      {count}{suffix}
+      {count}
+      {suffix}
     </span>
   );
 }
 
 export default function WhyChoose() {
   return (
-    <section id="why-us" className="py-24 relative bg-gray-50 dark:bg-[#020617] border-y border-gray-200 dark:border-white/5 transition-colors">
+    <section
+      id="why-us"
+      className="py-24 relative bg-gray-50 dark:bg-[#020617] border-y border-gray-200 dark:border-white/5 transition-colors"
+    >
       <div className="container mx-auto px-6">
-        
         {/* Stats Section with Glassmorphism floating effect */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 mb-24 relative z-10 -mt-36">
+        {/* <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 mb-24 relative z-10 -mt-36">
           {STATS.map((stat, index) => (
             <motion.div 
               key={stat.id}
@@ -54,11 +59,11 @@ export default function WhyChoose() {
               <p className="text-teal-600 dark:text-teal-400 text-sm font-semibold uppercase tracking-wider transition-colors">{stat.label}</p>
             </motion.div>
           ))}
-        </div>
+        </div> */}
 
         {/* Why Choose split */}
         <div className="flex flex-col lg:flex-row items-center gap-16">
-          <motion.div 
+          <motion.div
             className="w-full lg:w-1/2"
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -71,27 +76,29 @@ export default function WhyChoose() {
               A Premium Experience For Premium Clinics
             </h2>
             <p className="text-gray-600 dark:text-gray-300 text-lg mb-8 leading-relaxed font-light transition-colors">
-              We aren't just another software. We provide a competitive edge. Speed up your workflow, reduce overhead, and give your patients a modern experience they will love.
+              We aren't just another software. We provide a competitive edge.
+              Speed up your workflow, reduce overhead, and give your patients a
+              modern experience they will love.
             </p>
-            
-            <motion.button 
+
+            {/* <motion.button 
               className="glow-button group relative px-8 py-4 bg-transparent border border-teal-500 text-teal-600 dark:text-white font-bold rounded-full overflow-hidden transition-colors"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
               <span className="absolute inset-0 bg-teal-500 w-0 group-hover:w-full transition-all duration-300 ease-out z-0"></span>
               <span className="relative z-10 group-hover:text-white dark:group-hover:text-[#020617] transition-colors">See the Difference</span>
-            </motion.button>
+            </motion.button> */}
           </motion.div>
 
-          <motion.div 
+          <motion.div
             className="w-full lg:w-1/2 grid grid-cols-1 sm:grid-cols-2 gap-6"
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
           >
             {WHY_CHOOSE_US.map((item, index) => (
-              <motion.div 
+              <motion.div
                 key={index}
                 className="bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 p-6 rounded-2xl shadow-sm dark:shadow-none hover:bg-teal-50 dark:hover:bg-teal-500/10 hover:border-teal-500/30 transition-all cursor-default"
                 whileHover={{ y: -5, scale: 1.02 }}
@@ -99,13 +106,16 @@ export default function WhyChoose() {
                 <div className="w-10 h-10 rounded-full bg-gradient-to-br from-teal-400 to-cyan-500 mb-4 flex items-center justify-center text-white dark:text-[#020617] font-black glow-box transition-colors">
                   {index + 1}
                 </div>
-                <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-2 transition-colors">{item.title}</h4>
-                <p className="text-gray-600 dark:text-gray-400 text-sm transition-colors">{item.desc}</p>
+                <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-2 transition-colors">
+                  {item.title}
+                </h4>
+                <p className="text-gray-600 dark:text-gray-400 text-sm transition-colors">
+                  {item.desc}
+                </p>
               </motion.div>
             ))}
           </motion.div>
         </div>
-        
       </div>
     </section>
   );

@@ -73,12 +73,17 @@ export default function Footer() {
               className="flex items-center gap-3 mb-6 group inline-flex"
             >
               <img
-                src={theme === 'dark' ? "/medsky_logo4.png" : "/medsky_logo5.png"}
+                src={
+                  theme === "dark" ? "/medsky_logo4.png" : "/medsky_logo5.png"
+                }
                 alt="MedSky Logo"
                 className="h-12 md:h-14 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
               />
               <span className="text-2xl md:text-3xl font-bold tracking-wide text-gray-900 dark:text-white transition-colors">
-                MedSky<span className="text-teal-500 dark:text-teal-400 transition-colors">.</span>
+                MedSky
+                <span className="text-teal-500 dark:text-teal-400 transition-colors">
+                  .
+                </span>
               </span>
             </a>
             <p className="text-gray-600 dark:text-gray-400 text-lg pr-4 lg:pr-20 mb-6 font-light transition-colors">
@@ -88,9 +93,11 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="text-gray-900 dark:text-white font-bold text-lg mb-6 transition-colors">Quick Links</h4>
+            <h4 className="text-gray-900 dark:text-white font-bold text-lg mb-6 transition-colors">
+              Quick Links
+            </h4>
             <ul className="space-y-4">
-              {["Home", "About Us", "Features", "Pricing", "Contact"].map(
+              {["Home", "About", "Features", "Pricing", "FAQ", "Contact"].map(
                 (link) => (
                   <li key={link}>
                     <a
@@ -105,8 +112,10 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div>
-            <h4 className="text-gray-900 dark:text-white font-bold text-lg mb-6 transition-colors">Legal</h4>
+          {/* <div>
+            <h4 className="text-gray-900 dark:text-white font-bold text-lg mb-6 transition-colors">
+              Legal
+            </h4>
             <ul className="space-y-4">
               <li>
                 <a
@@ -141,7 +150,7 @@ export default function Footer() {
                 </a>
               </li>
             </ul>
-          </div>
+          </div> */}
         </div>
 
         <div className="border-t border-gray-200 dark:border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 transition-colors">

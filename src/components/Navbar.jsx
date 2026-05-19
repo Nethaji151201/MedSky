@@ -7,8 +7,9 @@ import { useTheme } from "../context/ThemeContext";
 const NAV_LINKS = [
   { name: "Home", href: "#home" },
   { name: "About", href: "#about" },
-  { name: "Features", href: "#features" },
+  { name: "Modules", href: "#features" },
   { name: "Why Us", href: "#why-us" },
+  { name: "FAQ", href: "#faq" },
   { name: "Contact", href: "#contact" },
 ];
 
@@ -48,7 +49,7 @@ export default function Navbar() {
           className="flex items-center gap-3 z-50 group"
         >
           <img
-            src={theme === 'dark' ? "/medsky_logo4.png" : "/medsky_logo5.png"}
+            src={theme === "dark" ? "/medsky_logo4.png" : "/medsky_logo5.png"}
             alt="MedSky Logo"
             className="h-10 md:h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
           />
@@ -71,8 +72,8 @@ export default function Navbar() {
             </a>
           ))}
           <a
-            href="#contact"
-            onClick={(e) => scrollToSection(e, "#contact")}
+            href="#demo"
+            onClick={(e) => scrollToSection(e, "#demo")}
             className="glow-button bg-teal-500 hover:bg-teal-600 dark:bg-teal-600 dark:hover:bg-teal-500 text-white px-6 py-2.5 rounded-full font-semibold transition-all shadow-lg dark:shadow-teal-500/30 text-sm tracking-wide"
           >
             Book Demo
@@ -81,13 +82,13 @@ export default function Navbar() {
 
         {/* Right side controls */}
         <div className="flex items-center gap-4">
-          <button
+          {/* <button
             onClick={toggleTheme}
             className="p-2.5 rounded-full bg-gray-100 dark:bg-white/10 text-gray-600 dark:text-white hover:bg-gray-200 dark:hover:bg-white/20 transition-colors z-50"
             aria-label="Toggle Theme"
           >
             {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
-          </button>
+          </button> */}
 
           {/* Mobile Toggle */}
           <button
