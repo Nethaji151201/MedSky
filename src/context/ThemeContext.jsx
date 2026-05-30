@@ -8,9 +8,9 @@ export const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState(() => {
     if (typeof window !== "undefined") {
       const savedTheme = localStorage.getItem("theme");
-      return savedTheme || "dark";
+      return savedTheme || "light";
     }
-    return "dark";
+    return "light";
   });
 
   useEffect(() => {

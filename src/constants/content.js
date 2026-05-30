@@ -20,7 +20,7 @@ export const COMPANY_INFO = {
   shortDesc:
     "Simplifying Healthcare Solutions For Hospitals, Clinics, Pharmacies, and Laboratories.",
   heroTitle: "HEALTHCARE AT YOUR DESK!!",
-  email: "nethaji151201@gmail.com",
+  email: "support@medsky.in",
   phone: "+91 7418 8844 18 / +91 7418 8844 19",
   address: "Medsky Healthcare",
   socials: {
